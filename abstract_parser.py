@@ -29,6 +29,7 @@ def parse_abstract(xml_text):
     year = article.findtext(".//PubDate/Year", default="Unknown")
     journal = article.findtext(".//Journal/Title", default="Unknown")
     pmid = article.findtext(".//PMID", default="Unknown")
+    doi = article.findtext(".//ArticleID[@IdType='doi']", default=None)
     
     return {
         "pmid": pmid,
@@ -37,7 +38,7 @@ def parse_abstract(xml_text):
         "year": year,
         "journal": journal,
         "abstract": abstract,
-        "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+        "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/", "doi": doi
     }
     
 def parse_batch(xml_list):

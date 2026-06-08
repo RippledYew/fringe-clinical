@@ -8,6 +8,7 @@ from pubmed_query import search_pubmed, fetch_abstracts_batch
 from abstract_parser import parse_batch
 from research_log import log_results, show_history
 from research_analyzer import run_analysis
+from fulltext_fetcher import find_fulltext
 
 def banner():
     os.system("figlet -f slant 'Fringe Clinical' | lolcat")
@@ -27,7 +28,8 @@ def run_search():
         print(f"year: {article['year']}")
         print(f"Authors: {', '.join(article['authors'][:3])}")
         print(f"Abstract:{article['abstract'][:400]}")
-        print(f"URL: {article['url']}")
+        fulltext = find_fulltext(article)
+        print(f"Full Text ({fulltext['source']}): {fulltext['url']}")
         print("-" * 60)
         
     log_results(query, articles)
