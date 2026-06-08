@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import xml.etree.ElementTree as ET
 import json
 
@@ -40,6 +42,8 @@ def parse_abstract(xml_text):
     
 def parse_batch(xml_list):
     """Parse a list of XML abstracts, return list of clean dictionaries."""
+    if not xml_list:
+        return []
     results = []
     for xml_text in xml_list:
         parsed = parse_abstract(xml_text)
