@@ -34,7 +34,8 @@ def parse_abstract(xml_text):
         "authors": authors,
         "year": year,
         "journal": journal,
-        "abstract": abstract
+        "abstract": abstract,
+        "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
     }
     
 def parse_batch(xml_list):
@@ -45,3 +46,4 @@ def parse_batch(xml_list):
         if parsed is not None:
             results.append(parsed)
         return results
+    

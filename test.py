@@ -1,5 +1,8 @@
 from pubmed_query import search_pubmed, fetch_abstracts_batch
 from abstract_parser import parse_batch
+from research_log import log_results, show_history
+
+query = "polystyrene gas exposure health"
 
 ids = search_pubmed("PFAS health outcomes", 3)
 raw = fetch_abstracts_batch(ids)
@@ -12,4 +15,8 @@ for article in articles:
     print(f"Year: {article['year']}")
     print(f"Authors: {', '.join(article['authors'][:3])}")
     print(f"Abstract: {article['abstract'][:300]}")
+    print(f"URL: {article['url']}")
     print("-" * 60)
+
+log_results(query, articles)
+show_history()
