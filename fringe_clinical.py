@@ -7,6 +7,7 @@ import subprocess
 from pubmed_query import search_pubmed, fetch_abstracts_batch
 from abstract_parser import parse_batch
 from research_log import log_results, show_history
+from research_analyzer import run_analysis
 
 def banner():
     os.system("figlet -f slant 'Fringe Clinical' | lolcat")
@@ -37,7 +38,8 @@ def main():
         print("\n[ Fringe Clinical ]")
         print("1. Search PubMed")
         print("2. Research History")
-        print("3. Exit")
+        print("3. Analyze My Research")
+        print("4. Exit")
         
         choice = input("\nSelect: ")
         
@@ -46,6 +48,8 @@ def main():
         elif choice == "2":
             show_history()
         elif choice == "3":
+            run_analysis()
+        elif choice == "4":
             print("\nGoodnight")
             break
         
