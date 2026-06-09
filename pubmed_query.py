@@ -19,8 +19,11 @@ def search_pubmed(query, max_results=20):
     
     response = requests.get(search_url, params=params)
     time.sleep(0.4)
-    data = response.json()
-    return data["esearchresult"]["idlist"]
+    try:
+        data = response.json()
+        return data["esearchresult"]["idlist"]
+    except Exception:
+        return []
 
 def fetch_abstract(pubmed_id):
     """Fetch abstract text for a given PubMed ID."""
@@ -40,6 +43,8 @@ def fetch_abstract(pubmed_id):
     
 def fetch_abstracts_batch(id_list):
     """Fetch abstracts for a list of PubMEd IDs."""
+    if not id_list:
+        return []
     abstracts = []
     for pubmed_id in id_list:
         result = fetch_abstract(pubmed_id)
